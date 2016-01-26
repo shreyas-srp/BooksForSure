@@ -4,6 +4,7 @@
     package="booksforsure.galaxyworks.com.booksforsure">
 
     <uses-sdk tools:overrideLibrary="com.beardedhen.androidbootstrap" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyApp"
@@ -31,6 +32,10 @@
             android:name=".Homepage"
             android:label="@string/title_activity_homepage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6c8eaea736b29cbca442b89c0ca892e52a111291" />
     </application>
 
 </manifest>
