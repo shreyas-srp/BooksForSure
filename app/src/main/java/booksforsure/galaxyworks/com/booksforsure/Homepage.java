@@ -121,6 +121,10 @@ public class Homepage extends AppCompatActivity
     }
 
     public void image_order(){
+        if(bitmap == null){
+            Toast.makeText(getApplicationContext(),"Please choose a image!",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -132,6 +136,7 @@ public class Homepage extends AppCompatActivity
         ParseObject image_object = new ParseObject("OrderHistory");
         image_object.put("phoneNumber",phone);
         image_object.put("photoOrder",file);
+        image_object.put("type",1);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -162,6 +167,35 @@ public class Homepage extends AppCompatActivity
     public void text_order(){
         String textOrder = books_adapter.getOrder();
         Toast.makeText(getApplicationContext(),textOrder,Toast.LENGTH_SHORT).show();
+
+        String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+
+        ParseObject OrderText = new ParseObject("OrderHistory");
+        OrderText.put("textOrder",textOrder);
+        OrderText.put("phoneNumber",phone);
+        OrderText.put("type",2);
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Please Wait");
+        progressDialog.setMessage("Loading..");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        OrderText.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                progressDialog.dismiss();
+                if(e == null){
+                    Toast.makeText(getApplicationContext(),"Order Placed!",Toast.LENGTH_SHORT).show();
+                    Intent restart = new Intent(getApplicationContext(),Homepage.class);
+                    startActivity(restart);
+                    finish();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return;
     }
