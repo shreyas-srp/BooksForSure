@@ -56,9 +56,19 @@ public class Edit_Profile extends AppCompatActivity {
         final String userName = name.getText().toString();
         final String userAddress = address.getText().toString();
 
-        if(userAddress.length() == 0 || userName.length() == 0) {
+        if(userAddress.length() == 0) {
+            name.setError("Enter Name");
+            progressDialog.dismiss();
             return;
         }
+
+        if(userName.length() == 0) {
+            address.setError("Enter Address");
+            progressDialog.dismiss();
+            return;
+        }
+
+
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("User_details");
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();

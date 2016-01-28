@@ -25,8 +25,11 @@ public class Splash extends AppCompatActivity {
                 SharedPreferences user_details = getSharedPreferences("user_details_sharedpref",MODE_PRIVATE);
                 Intent mainIntent;
 
-                mainIntent = new Intent(getApplicationContext(),Login.class);
-
+                if(user_details.contains("userPhoneNumber")) {
+                    mainIntent = new Intent(getApplicationContext(), Homepage.class);
+                }else {
+                    mainIntent = new Intent(getApplicationContext(), Login.class);
+                }
 
                 startActivity(mainIntent);
                 finish();

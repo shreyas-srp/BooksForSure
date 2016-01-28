@@ -1,6 +1,7 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,10 +24,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.digits.sdk.android.Digits;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,6 +52,8 @@ public class Homepage extends AppCompatActivity
     Bitmap image;
     ImageView list_image,icon_camera;
     File imagefile;
+    Button image_order_btn,text_order_btn;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +100,70 @@ public class Homepage extends AppCompatActivity
 
         list_image = (ImageView) findViewById(R.id.image_list);
         icon_camera = (ImageView) findViewById(R.id.icon_camera);
+        image_order_btn = (Button) findViewById(R.id.image_order_button);
 
+        image_order_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image_order();
+            }
+        });
+
+        text_order_btn = (Button) findViewById(R.id.text_order_button);
+
+        text_order_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text_order();
+            }
+        });
+
+    }
+
+    public void image_order(){
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] data = stream.toByteArray();
+        ParseFile file = new ParseFile("image.txt", data);
+
+        String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+
+        ParseObject image_object = new ParseObject("OrderHistory");
+        image_object.put("phoneNumber",phone);
+        image_object.put("photoOrder",file);
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Please Wait");
+        progressDialog.setMessage("Loading..");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        image_object.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                progressDialog.dismiss();
+                if(e == null){
+                    list_image.setImageBitmap(null);
+                    list_image.setVisibility(View.GONE);
+                    icon_camera.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(),"Order Placed!",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+
+    public void text_order(){
+        String textOrder = books_adapter.getOrder();
+        Toast.makeText(getApplicationContext(),textOrder,Toast.LENGTH_SHORT).show();
+
+        return;
     }
 
 
@@ -163,6 +235,7 @@ public class Homepage extends AppCompatActivity
         list_image.setVisibility(View.VISIBLE);
         list_image.setImageBitmap(thumbnail);
         image = thumbnail;
+        bitmap = thumbnail;
     }
 
     @SuppressWarnings("deprecation")
@@ -195,6 +268,7 @@ public class Homepage extends AppCompatActivity
         list_image.setVisibility(View.VISIBLE);
         list_image.setImageBitmap(bm);
         image = bm;
+        bitmap = bm;
     }
 
     @Override

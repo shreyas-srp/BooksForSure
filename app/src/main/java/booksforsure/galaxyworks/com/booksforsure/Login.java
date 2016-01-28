@@ -2,6 +2,7 @@ package booksforsure.galaxyworks.com.booksforsure;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -54,10 +55,10 @@ public class Login extends AppCompatActivity {
 
         authCallback = new AuthCallback() {
             @Override
-            public void success(DigitsSession session, String phoneNumber) {
+            public void success(DigitsSession session, final String phoneNumber) {
 
                 ParseObject user_details = new ParseObject("User_details");
-                String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+                final String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
                 user_details.put("phoneNumber",phone);
 
                 user_details.saveInBackground(new SaveCallback() {
@@ -65,6 +66,12 @@ public class Login extends AppCompatActivity {
                     public void done(ParseException e) {
                         progressDialog.dismiss();
                         if(e == null){
+
+                            SharedPreferences user_details = getSharedPreferences("user_details_sharedpref",MODE_PRIVATE);
+                            SharedPreferences.Editor user_details_editor = user_details.edit();
+                            user_details_editor.putString("userPhoneNumber",phone);
+                            user_details_editor.commit();
+
                             Intent get_details = new Intent(getApplicationContext(),Edit_Profile.class);
                             startActivity(get_details);
                             finish();

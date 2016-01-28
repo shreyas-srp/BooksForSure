@@ -1,12 +1,16 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by shrey on 26-01-2016.
@@ -54,6 +58,23 @@ public class BookListAdapter {
         Toast.makeText(context,book_count+"",Toast.LENGTH_SHORT).show();
 
         linearLayout.addView(v);
+    }
+
+    public String getOrder(){
+        String order = new String();
+        JSONArray orderJsonArray = new JSONArray();
+        JSONObject orderJson = new JSONObject();
+        try {
+            orderJson.put("bookname", "sdfjbds");
+            orderJson.put("bookauthor", "dsjfbjdsbf");
+            orderJsonArray.put(0,orderJson);
+            orderJsonArray.put(1,orderJson);
+            return orderJsonArray.toString();
+        }catch (Exception e){
+            Log.e("error",e.toString());
+        }
+
+        return order;
     }
 
 }
