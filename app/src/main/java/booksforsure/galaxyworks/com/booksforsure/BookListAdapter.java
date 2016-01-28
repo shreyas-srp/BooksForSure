@@ -19,7 +19,8 @@ public class BookListAdapter {
 
     public Context context;
     LinearLayout linearLayout;
-    public int book_count = 0,display_book_count = 0;
+    public int book_count = 0;
+    public int set_flag[] = new int[101];
     EditText name,author;
     ImageView cancel;
 
@@ -27,10 +28,14 @@ public class BookListAdapter {
         this.context = context;
         this.linearLayout = linearLayout;
 
+        for(int i = 0;i<101;i++)
+            set_flag[i] = 0;
+
     }
 
     public void addView(){
         book_count++;
+        set_flag[book_count] = 1;
 
         View v = LayoutInflater.from(context).inflate(R.layout.books_edittext, linearLayout , false);
         name = (EditText) v.findViewById(R.id.bookname_edittxt);
@@ -53,6 +58,7 @@ public class BookListAdapter {
                 Toast.makeText(context,"cancelled"+id,Toast.LENGTH_SHORT).show();
                 View v = linearLayout.findViewById(id - 300 + 900);
                 linearLayout.removeView(v);
+                set_flag[id - 300] = 0;
             }
         });
         Toast.makeText(context,book_count+"",Toast.LENGTH_SHORT).show();
@@ -63,12 +69,19 @@ public class BookListAdapter {
     public String getOrder(){
         String order = new String();
         JSONArray orderJsonArray = new JSONArray();
-        JSONObject orderJson = new JSONObject();
+
         try {
-            orderJson.put("bookname", "sdfjbds");
-            orderJson.put("bookauthor", "dsjfbjdsbf");
-            orderJsonArray.put(0,orderJson);
-            orderJsonArray.put(1,orderJson);
+
+            for(int i = 1;i<book_count;i++) {
+                EditText name_edit = (EditText) linearLayout.findViewById(i+100);
+                EditText author_edit = (EditText) linearLayout.findViewById(i+200);
+
+                JSONObject orderJson = new JSONObject();
+                orderJson.put("bookname", );
+                orderJson.put("bookauthor", "");
+                orderJsonArray.put(0, orderJson);
+            }
+
             return orderJsonArray.toString();
         }catch (Exception e){
             Log.e("error",e.toString());
