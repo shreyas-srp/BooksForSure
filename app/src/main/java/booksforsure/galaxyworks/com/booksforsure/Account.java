@@ -31,7 +31,6 @@ public class Account extends AppCompatActivity {
 
         get_details();
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

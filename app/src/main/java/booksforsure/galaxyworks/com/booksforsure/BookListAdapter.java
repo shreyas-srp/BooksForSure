@@ -32,7 +32,7 @@ public class BookListAdapter {
 
     }
 
-    public void addView(){
+    public void addView(int type){
         book_count++;
         act_count++;
         set_flag[book_count] = 1;
@@ -94,8 +94,9 @@ public class BookListAdapter {
                 Log.e("error", e.toString());
             }
         }
-
-        return orderJsonArray.toString();
+        if( orderJsonArray.length() == 0)   return "Empty";
+        else
+            return orderJsonArray.toString();
     }
 
 }

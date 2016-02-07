@@ -79,7 +79,7 @@ public class Homepage extends AppCompatActivity
 
         books_adapter.create(linear_layout_list,getApplicationContext());
 
-        books_adapter.addView();
+        //books_adapter.addView();
 
         image_cardView = (CardView) findViewById(R.id.image_cardview);
 
@@ -94,7 +94,7 @@ public class Homepage extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                books_adapter.addView();
+                select_order_type();
             }
         });
 
@@ -164,10 +164,35 @@ public class Homepage extends AppCompatActivity
 
     }
 
+    public void select_order_type(){
+        final CharSequence[] items = { "Book", "Stationery" , "Other", "Cancel" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Type!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Book")) {
+                    books_adapter.addView(1);
+                } else if (items[item].equals("Stationery")) {
+                    books_adapter.addView(2);
+                } else if (items[item].equals("Other")) {
+                    books_adapter.addView(3);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
     public void text_order(){
         String textOrder = books_adapter.getOrder();
-        Toast.makeText(getApplicationContext(),textOrder,Toast.LENGTH_SHORT).show();
+        if( textOrder.equals("Empty")) {
+            Toast.makeText(getApplicationContext(), "Enter Details", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        Toast.makeText(getApplicationContext(), textOrder, Toast.LENGTH_SHORT).show();
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
 
         ParseObject OrderText = new ParseObject("OrderHistory");
