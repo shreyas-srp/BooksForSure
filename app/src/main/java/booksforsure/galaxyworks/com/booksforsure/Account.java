@@ -1,10 +1,13 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.parse.ParseQuery;
 public class Account extends AppCompatActivity {
 
     TextView name,phone_no,address;
+    CardView address_card,name_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

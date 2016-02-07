@@ -35,12 +35,22 @@ public class BookListAdapter {
     public void addView(int type){
         book_count++;
         act_count++;
-        set_flag[book_count] = 1;
+        set_flag[book_count] = type;
 
         View v = LayoutInflater.from(context).inflate(R.layout.books_edittext, linearLayout , false);
         name = (EditText) v.findViewById(R.id.bookname_edittxt);
         author = (EditText) v.findViewById(R.id.bookauthor_edittxt);
         cancel = (ImageView) v.findViewById(R.id.cancel_action);
+
+        if( type == 1){
+
+        }else if( type == 2){
+            name.setHint("Stationary Title");
+            author.setHint("Stationary Description");
+        }else if( type == 3){
+            name.setHint("Description..");
+            author.setVisibility(View.GONE);
+        }
 
         v.setId(900+book_count);
 
@@ -62,7 +72,6 @@ public class BookListAdapter {
                 act_count--;
             }
         });
-        //Toast.makeText(context,book_count+"",Toast.LENGTH_SHORT).show();
 
         linearLayout.addView(v);
     }
@@ -76,7 +85,8 @@ public class BookListAdapter {
             try {
 
                 for (int i = 1; i <= book_count; i++) {
-                    if (set_flag[i] == 1) {
+                    if (set_flag[i] != 0) {
+                        int type = set_flag[i];
                         EditText name_edit = (EditText) linearLayout.findViewById(i + 100);
                         EditText author_edit = (EditText) linearLayout.findViewById(i + 200);
 
@@ -84,9 +94,24 @@ public class BookListAdapter {
                         String book_author = author_edit.getText().toString();
 
                         JSONObject orderJson = new JSONObject();
-                        orderJson.put("bookname", book_name);
-                        orderJson.put("bookauthor", book_author);
-                        orderJsonArray.put(i - 1, orderJson);
+
+                        if( type == 1) {
+                            orderJson.put("type",type);
+                            orderJson.put("bookname", book_name);
+                            orderJson.put("bookauthor", book_author);
+                            orderJsonArray.put(i - 1, orderJson);
+                        }else if( type == 2){
+                            orderJson.put("type",type);
+                            orderJson.put("stationary_title", book_name);
+                            orderJson.put("description", book_author);
+                            orderJsonArray.put(i - 1, orderJson);
+                        }else if( type == 3){
+                            orderJson.put("type",type);
+                            orderJson.put("description", book_name);
+                            //orderJson.put("description", book_author);
+                            orderJsonArray.put(i - 1, orderJson);
+                        }
+
                     }
                 }
 
