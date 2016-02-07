@@ -31,6 +31,28 @@ public class Account extends AppCompatActivity {
 
         get_details();
 
+        address_card = (CardView) findViewById(R.id.addressId);
+        name_card=(CardView)findViewById(R.id.nameCard);
+
+        name_card.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent get_details = new Intent(getApplicationContext(), Edit_Profile.class);
+                startActivity(get_details);
+                finish();
+            }
+        });
+
+
+        address_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent get_details = new Intent(getApplicationContext(), Edit_Profile.class);
+                startActivity(get_details);
+                finish();
+            }
+        });
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
