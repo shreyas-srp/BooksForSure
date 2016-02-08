@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,7 +48,7 @@ public class Homepage extends AppCompatActivity
 
     Fragment fragment;
     BookListAdapter books_adapter;
-    LinearLayout linear_layout_list;
+    ViewGroup linear_layout_list;
     CardView image_cardView;
     final int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     Bitmap image;
@@ -61,7 +63,6 @@ public class Homepage extends AppCompatActivity
         setContentView(R.layout.activity_homepage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,8 +79,6 @@ public class Homepage extends AppCompatActivity
         books_adapter = new BookListAdapter();
 
         books_adapter.create(linear_layout_list,getApplicationContext());
-
-        //books_adapter.addView();
 
         image_cardView = (CardView) findViewById(R.id.image_cardview);
 
@@ -386,6 +385,10 @@ public class Homepage extends AppCompatActivity
             Digits.getSessionManager().clearActiveSession();
             Intent logout = new Intent(getApplicationContext(),Login.class);
             startActivity(logout);
+            SharedPreferences user_details = getSharedPreferences("user_details_sharedpref",MODE_PRIVATE);
+            SharedPreferences.Editor user_details_editor = user_details.edit();
+            user_details_editor.clear();
+            user_details_editor.commit();
             finish();
         }
 

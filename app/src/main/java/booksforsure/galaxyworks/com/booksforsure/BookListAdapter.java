@@ -1,12 +1,13 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.content.Context;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,17 +18,17 @@ import org.json.JSONObject;
 public class BookListAdapter {
 
     public Context context;
-    LinearLayout linearLayout;
+    ViewGroup linearLayout;
     public int book_count = 0,act_count = 0;
-    public int set_flag[] = new int[101];
+    public int set_flag[] = new int[1001];
     EditText name,author;
     ImageView cancel;
 
-    public void create(LinearLayout linearLayout, Context context){
+    public void create(ViewGroup linearLayout, Context context){
         this.context = context;
         this.linearLayout = linearLayout;
 
-        for(int i = 0;i<101;i++)
+        for(int i = 0;i<1001;i++)
             set_flag[i] = 0;
 
     }
@@ -47,16 +48,18 @@ public class BookListAdapter {
         }else if( type == 2){
             name.setHint("Stationary Title");
             author.setHint("Stationary Description");
+            author.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }else if( type == 3){
             name.setHint("Description..");
+            name.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
             author.setVisibility(View.GONE);
         }
 
-        v.setId(900+book_count);
+        v.setId(9000+book_count);
 
-        name.setId(100+book_count);
-        author.setId(200+book_count);
-        cancel.setId(300+book_count);
+        name.setId(1000+book_count);
+        author.setId(2000+book_count);
+        cancel.setId(3000+book_count);
 
         name.requestFocus();
 
@@ -66,9 +69,9 @@ public class BookListAdapter {
 
                 int id = vi.getId();
                 //Toast.makeText(context,"cancelled"+id,Toast.LENGTH_SHORT).show();
-                View v = linearLayout.findViewById(id - 300 + 900);
+                View v = linearLayout.findViewById(id - 3000 + 9000);
                 linearLayout.removeView(v);
-                set_flag[id - 300] = 0;
+                set_flag[id - 3000] = 0;
                 act_count--;
             }
         });
@@ -87,8 +90,8 @@ public class BookListAdapter {
                 for (int i = 1; i <= book_count; i++) {
                     if (set_flag[i] != 0) {
                         int type = set_flag[i];
-                        EditText name_edit = (EditText) linearLayout.findViewById(i + 100);
-                        EditText author_edit = (EditText) linearLayout.findViewById(i + 200);
+                        EditText name_edit = (EditText) linearLayout.findViewById(i + 1000);
+                        EditText author_edit = (EditText) linearLayout.findViewById(i + 2000);
 
                         String book_name = name_edit.getText().toString();
                         String book_author = author_edit.getText().toString();

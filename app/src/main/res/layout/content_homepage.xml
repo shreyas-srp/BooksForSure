@@ -83,6 +83,9 @@
                 android:id="@+id/order_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:showDividers="middle"
+                android:divider="?android:dividerHorizontal"
+                android:animateLayoutChanges="true"
                 android:orientation="vertical" >
 
 

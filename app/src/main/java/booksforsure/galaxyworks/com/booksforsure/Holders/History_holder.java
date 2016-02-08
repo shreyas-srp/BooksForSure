@@ -1,6 +1,6 @@
 package booksforsure.galaxyworks.com.booksforsure.Holders;
 
-import android.graphics.Bitmap;
+import com.parse.ParseFile;
 
 /**
  * Created by shrey on 28-01-2016.
@@ -8,6 +8,6 @@ import android.graphics.Bitmap;
 public class History_holder {
     public int type;
     public String order,time;
-    public Bitmap image;
+    public ParseFile image;
 
 }
