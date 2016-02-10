@@ -25,7 +25,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,7 +47,7 @@ public class Homepage extends AppCompatActivity
 
     Fragment fragment;
     BookListAdapter books_adapter;
-    ViewGroup linear_layout_list;
+    LinearLayout linear_layout_list;
     CardView image_cardView;
     final int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     Bitmap image;
@@ -109,6 +108,8 @@ public class Homepage extends AppCompatActivity
         });
 
         text_order_btn = (Button) findViewById(R.id.text_order_button);
+
+
 
         text_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
