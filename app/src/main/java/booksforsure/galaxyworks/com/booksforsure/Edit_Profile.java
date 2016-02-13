@@ -21,7 +21,7 @@ import com.parse.SaveCallback;
 public class Edit_Profile extends AppCompatActivity {
 
     Button save_profile_btn;
-    EditText name,address;
+    EditText name,address,landmark;
     CoordinatorLayout coordinatorLayout;
 
     @Override
@@ -35,6 +35,7 @@ public class Edit_Profile extends AppCompatActivity {
         save_profile_btn = (Button) findViewById(R.id.save_profile_btn);
         name = (EditText) findViewById(R.id.name_edittext);
         address = (EditText) findViewById(R.id.address_edittext);
+        landmark = (EditText) findViewById(R.id.landmark_edittext);
 
         save_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,15 +56,22 @@ public class Edit_Profile extends AppCompatActivity {
 
         final String userName = name.getText().toString();
         final String userAddress = address.getText().toString();
+        final String userLandmark = landmark.getText().toString();
 
-        if(userAddress.length() == 0) {
+        if(userName.length() == 0) {
             name.setError("Enter Name");
             progressDialog.dismiss();
             return;
         }
 
-        if(userName.length() == 0) {
+        if(userAddress.length() == 0) {
             address.setError("Enter Address");
+            progressDialog.dismiss();
+            return;
+        }
+
+        if(userLandmark.length() == 0) {
+            landmark.setError("Enter Landmark");
             progressDialog.dismiss();
             return;
         }
@@ -81,6 +89,7 @@ public class Edit_Profile extends AppCompatActivity {
 
                     user.put("user_name",userName);
                     user.put("userAddress",userAddress);
+                    user.put("landmark",userLandmark);
                     user.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {

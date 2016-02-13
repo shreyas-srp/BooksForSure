@@ -44,7 +44,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final History_holder hist = history_list.get(i);
-
+        viewHolder.order_price.setText("Price :     " + hist.price);
         if(hist.type == 1){
             viewHolder.order_image.setVisibility(View.VISIBLE);
             viewHolder.order_txt.setVisibility(View.GONE);
@@ -95,7 +95,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView order_txt,order_time;
+        TextView order_txt,order_time,order_price;
         ImageView order_image;
 
         public ViewHolder(View itemView) {
@@ -103,6 +103,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
             order_txt = (TextView) itemView.findViewById(R.id.history_text);
             order_image = (ImageView) itemView.findViewById(R.id.history_image);
             order_time = (TextView) itemView.findViewById(R.id.history_time);
+            order_price = (TextView) itemView.findViewById(R.id.price_txtview);
 
         }
     }

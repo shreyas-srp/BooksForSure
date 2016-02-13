@@ -68,6 +68,7 @@ public class History extends AppCompatActivity {
                         ParseObject ob = List.get(i);
                         final History_holder hist = new History_holder();
                         hist.type = ob.getInt("type");
+                        hist.price = Integer.parseInt(ob.getString("totalAmount"));
                         hist.time = ob.getCreatedAt().toString();
 
                         if (hist.type == 1) {

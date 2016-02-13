@@ -109,8 +109,6 @@ public class Homepage extends AppCompatActivity
 
         text_order_btn = (Button) findViewById(R.id.text_order_button);
 
-
-
         text_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +135,8 @@ public class Homepage extends AppCompatActivity
         image_object.put("phoneNumber",phone);
         image_object.put("photoOrder",file);
         image_object.put("type",1);
+        image_object.put("flag",1);
+        image_object.put("totalAmount",0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -199,6 +199,8 @@ public class Homepage extends AppCompatActivity
         OrderText.put("textOrder",textOrder);
         OrderText.put("phoneNumber",phone);
         OrderText.put("type",2);
+        OrderText.put("flag",1);
+        OrderText.put("totalAmount",0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);

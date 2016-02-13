@@ -4,10 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +20,7 @@ import com.parse.ParseQuery;
 public class Account extends AppCompatActivity {
 
     TextView name,phone_no,address;
-    CardView address_card,name_card;
+    ImageView edit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +33,10 @@ public class Account extends AppCompatActivity {
         phone_no = (TextView) findViewById(R.id.account_phone);
         address = (TextView) findViewById(R.id.account_address);
 
+        edit_button = (ImageView) findViewById(R.id.edit_button);
         get_details();
 
-        address_card = (CardView) findViewById(R.id.addressId);
-        name_card=(CardView)findViewById(R.id.nameCard);
-
-        name_card.setOnClickListener(new View.OnClickListener(){
+        edit_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent get_details = new Intent(getApplicationContext(), Edit_Profile.class);
@@ -47,15 +45,6 @@ public class Account extends AppCompatActivity {
             }
         });
 
-
-        address_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent get_details = new Intent(getApplicationContext(), Edit_Profile.class);
-                startActivity(get_details);
-                finish();
-            }
-        });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
