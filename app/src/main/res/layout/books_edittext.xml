@@ -70,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:checked="true"
             android:text="New Book"
             android:textColor="#000000" />
 
