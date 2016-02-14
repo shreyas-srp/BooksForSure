@@ -1,0 +1,112 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="booksforsure.galaxyworks.com.booksforsure.Welcome_slide_3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/app_logo_background"
+        android:alpha="0.2"
+        android:scaleType="fitCenter"/>
+
+        <!--TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Books For Sure"
+            android:textColor="@color/textColor1"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_marginTop="40dp"/-->
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/slide_3_line1"
+                android:textColor="@color/textColor1"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/slide_3_line2"
+                android:textSize="16sp"
+                android:textColor="@color/textColor1"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/slide_3_line3"
+                android:textSize="16sp"
+                android:textColor="@color/textColor1"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/slide_3_line4"
+                android:textSize="16sp"
+                android:textColor="@color/textColor1"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/slide_3_line5"
+                android:textColor="@color/textColor1"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor1"
+                android:textSize="16sp"
+                android:text="@string/slide_3_line6"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lets Get Started!"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="3dp"/>
+
+
+    </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

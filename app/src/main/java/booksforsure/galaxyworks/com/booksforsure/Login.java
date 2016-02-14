@@ -75,7 +75,12 @@ public class Login extends AppCompatActivity {
                             user_details_editor.putString("userPhoneNumber", phone);
                             user_details_editor.commit();
 
-                            Intent home = new Intent(getApplicationContext(), Homepage.class);
+                            Intent home;
+                            if(user_details.contains("new")) {
+                                home = new Intent(getApplicationContext(), Homepage.class);
+                            }else {
+                                home = new Intent(getApplicationContext(), Welcome.class);
+                            }
                             startActivity(home);
                             finish();
 

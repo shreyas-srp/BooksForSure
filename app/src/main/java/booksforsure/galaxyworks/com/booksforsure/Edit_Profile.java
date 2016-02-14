@@ -2,6 +2,7 @@ package booksforsure.galaxyworks.com.booksforsure;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -95,9 +96,16 @@ public class Edit_Profile extends AppCompatActivity {
                         public void done(ParseException e) {
                             if(e == null){
                                 progressDialog.dismiss();
-                                Intent get_details = new Intent(getApplicationContext(),Homepage.class);
-                                startActivity(get_details);
-                                finish();
+                                SharedPreferences user_details = getSharedPreferences("user_details_sharedpref",MODE_PRIVATE);
+                                if(user_details.contains("new")) {
+                                    Intent get_details = new Intent(getApplicationContext(), Homepage.class);
+                                    startActivity(get_details);
+                                    finish();
+                                }else {
+                                    Intent get_details = new Intent(getApplicationContext(), Welcome.class);
+                                    startActivity(get_details);
+                                    finish();
+                                }
                             }
                             else {
                                 Snackbar.make(coordinatorLayout,"Failed!",Snackbar.LENGTH_INDEFINITE).setAction("Try Again!", new View.OnClickListener() {

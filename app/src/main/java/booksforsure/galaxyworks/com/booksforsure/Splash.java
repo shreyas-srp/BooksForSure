@@ -26,9 +26,13 @@ public class Splash extends AppCompatActivity {
                 Intent mainIntent;
 
                 if(user_details.contains("userPhoneNumber")) {
-                    mainIntent = new Intent(getApplicationContext(), Homepage.class);
+                    if(user_details.contains("new")) {
+                        mainIntent = new Intent(getApplicationContext(), Homepage.class);
+                    }else{
+                        mainIntent = new Intent(getApplicationContext(), Welcome.class);
+                    }
                 }else {
-                    mainIntent = new Intent(getApplicationContext(), Login.class);
+                        mainIntent = new Intent(getApplicationContext(), Login.class);
                 }
 
                 startActivity(mainIntent);

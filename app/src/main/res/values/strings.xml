@@ -13,4 +13,37 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_account">Account</string>
     <string name="title_activity_history">History</string>
+    <string name="title_activity_welcome">Welcome</string>
+
+
+    <string name="slide_2_line1">1) You Can Now Order Brand New/Used Text Books, Note books, Novels, Stationary Items, Educational
+Instruments/Equipments, Office Supplies At Your Finger Tips!</string>
+
+    <string name="slide_2_line2">2) For All U.G And P.G Courses</string>
+
+    <string name="slide_2_line3">Including: B.E, Diploma, B.Sc, Medical, Dental, LLB, M.Sc,  M.Tech etc.</string>
+
+    <string name="slide_2_line4">Commerce Courses Including  B.A, B.Com, BBM, BBA,  B.Ed, M.Com, M.B.A, C.A, etc.</string>
+
+    <string name="slide_2_line5">All Schools And Pre-University Books .</string>
+
+    <string name="slide_2_line6">Guides, Scanners , Aptitude And Competitive Books Also Available For All The Above Courses.</string>
+
+    <string name="slide_3_line1">1) To Place An Order Either Write Down Your Oder On A Piece Of Paper And Upload It On The App,
+
+Or Just Simply Fill In Your Order Via Text By Clicking On The Plus Icon.</string>
+
+    <string name="slide_3_line2">2) A Quick Confirmation Call/Sms Will Be Made To You Once Your Oder Has Been Placed, The Price Of
+
+The Order Including The Delivery Charges Will Be Confirmed With You Then.</string>
+
+    <string name="slide_3_line3">3) All The Items Will Be Available For A Discounted Price.</string>
+
+    <string name="slide_3_line4">4)  No Minimum Order</string>
+
+    <string name="slide_3_line5">5) Live Order Tracking</string>
+
+    <string name="slide_3_line6">6) Cash On Delivery.</string>
+
+
 </resources>
