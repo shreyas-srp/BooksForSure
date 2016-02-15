@@ -35,6 +35,7 @@ import com.digits.sdk.android.Digits;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
@@ -117,6 +118,7 @@ public class Homepage extends AppCompatActivity
             }
         });
 
+
     }
 
     public void image_order(){
@@ -151,6 +153,10 @@ public class Homepage extends AppCompatActivity
             public void done(ParseException e) {
                 progressDialog.dismiss();
                 if(e == null){
+                    ParsePush push = new ParsePush();
+                    push.setChannel("NewOrders");
+                    push.setMessage("New Order !");
+                    push.sendInBackground();
                     list_image.setImageBitmap(null);
                     list_image.setVisibility(View.GONE);
                     icon_camera.setVisibility(View.VISIBLE);
@@ -215,6 +221,10 @@ public class Homepage extends AppCompatActivity
             public void done(ParseException e) {
                 progressDialog.dismiss();
                 if(e == null){
+                    ParsePush push = new ParsePush();
+                    push.setChannel("NewOrders");
+                    push.setMessage("New Order !");
+                    push.sendInBackground();
                     Toast.makeText(getApplicationContext(),"Order Placed!",Toast.LENGTH_SHORT).show();
                     Intent restart = new Intent(getApplicationContext(),Homepage.class);
                     startActivity(restart);
