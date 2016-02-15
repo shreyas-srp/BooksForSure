@@ -60,7 +60,7 @@ public class History extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> List, ParseException e) {
                 if (e == null) {
-                    Log.d("score", "Retrieved " + List.size() + " scores");
+                    Log.e("score", "Retrieved " + List.size() + " scores");
 
                     final List<History_holder> history = new ArrayList<History_holder>();
 
@@ -86,7 +86,7 @@ public class History extends AppCompatActivity {
                     mRcyclerView.setAdapter(new ScaleInAnimationAdapter(mAdapter));
 
                 } else {
-                    Log.d("score", "Error: " + e.getMessage());
+                    Log.e("book", "Error: " + e.getMessage());
                 }
 
             }

@@ -61,6 +61,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
         }
         else if(hist.type == 2) {
             try {
+                Log.e("book",hist.order);
                 JSONArray OrderJsonArray = new JSONArray(hist.order);
                 for(int j = 0;j<OrderJsonArray.length();j++){
                     JSONObject orderJson = OrderJsonArray.getJSONObject(j);
@@ -72,6 +73,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                     }else if( type == 2){
                         String item = orderJson.getString("stationary_title");
                         String description = orderJson.getString("description");
+                        Log.e("book",item+ " " + description);
                         viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \n " + item + " " + description);
                     }else if( type == 3 ){
                         String description = orderJson.getString("description");
@@ -81,7 +83,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
             }catch (Exception e){
                 //viewHolder.order_txt.setText(e.toString());
-                Log.e("json",e.toString());
+                Log.e("book",e.toString());
             }
         }
         viewHolder.order_time.setText(hist.time);

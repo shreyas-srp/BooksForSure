@@ -22,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -200,7 +201,7 @@ public class Homepage extends AppCompatActivity
         OrderText.put("phoneNumber",phone);
         OrderText.put("type",2);
         OrderText.put("flag",1);
-        OrderText.put("totalAmount",0);
+        OrderText.put("totalAmount",0+"");
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -220,6 +221,7 @@ public class Homepage extends AppCompatActivity
                     finish();
                 }else {
                     Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
+                    Log.e("order",e.toString());
                 }
             }
         });
@@ -378,11 +380,8 @@ public class Homepage extends AppCompatActivity
         } else if (id == R.id.account) {
             Intent account = new Intent(getApplicationContext(),Account.class);
             startActivity(account);
-        } else if (id == R.id.callus) {
-
         } else if (id == R.id.share) {
 
-        } else if (id == R.id.rate) {
 
         } else if (id == R.id.logout) {
             Digits.getSessionManager().clearActiveSession();
