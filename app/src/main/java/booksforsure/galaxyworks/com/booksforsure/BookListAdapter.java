@@ -55,8 +55,8 @@ public class BookListAdapter {
         quantity = ( EditText) v.findViewById(R.id.quantity_edittext);
         plus_btn = (Button) v.findViewById(R.id.plus_button);
         minus_btn = (Button) v.findViewById(R.id.minus_button);
-        radio_new = (RadioButton) v.findViewById(R.id.radio_btn_new);
-        radio_old = (RadioButton) v.findViewById(R.id.radio_btn_old);
+        radio_new = (RadioButton) v.findViewById(R.id.radio_btn_old);
+        radio_old = (RadioButton) v.findViewById(R.id.radio_btn_new);
 
         if( type == 1){
             radioGroup.setVisibility(View.VISIBLE);

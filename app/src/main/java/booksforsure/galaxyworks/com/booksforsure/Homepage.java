@@ -139,7 +139,7 @@ public class Homepage extends AppCompatActivity
         image_object.put("photoOrder",file);
         image_object.put("type",1);
         image_object.put("flag",1);
-        image_object.put("totalAmount",0);
+        image_object.put("totalAmount","");
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
