@@ -78,6 +78,7 @@ public class BookListAdapter {
 
         if( type == 1){
             radioGroup.setVisibility(View.VISIBLE);
+            link.setVisibility(View.VISIBLE);
         }else if( type == 2){
             name.setHint("Stationary Title");
             author.setHint("Stationary Description");
