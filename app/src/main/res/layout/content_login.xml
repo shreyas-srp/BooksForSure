@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/app_logo_background"
-        android:alpha="0.2"/>
+        android:alpha="0.1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            android:text="Book For Sure"
+            android:text="Books For Sure"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:textSize="32sp" />
 
@@ -42,9 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center_horizontal"/>
 
         <Button
             android:id="@+id/login_btn"

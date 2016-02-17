@@ -39,7 +39,7 @@ public class BookListAdapter {
         act_count++;
         set_flag[book_count] = type;
 
-        final EditText name,author,quantity;
+        final EditText name,author,quantity,edition,isbn;
         ImageView cancel;
         RadioGroup radioGroup;
         Button plus_btn,minus_btn;
@@ -49,14 +49,16 @@ public class BookListAdapter {
 
         View v = LayoutInflater.from(context).inflate(R.layout.books_edittext, linearLayout , false);
         name = (EditText) v.findViewById(R.id.bookname_edittxt);
+        isbn = (EditText) v.findViewById(R.id.isbn_edittxt);
         author = (EditText) v.findViewById(R.id.bookauthor_edittxt);
         cancel = (ImageView) v.findViewById(R.id.cancel_action);
         radioGroup = (RadioGroup) v.findViewById(R.id.radio_group);
         quantity = ( EditText) v.findViewById(R.id.quantity_edittext);
+        edition = ( EditText) v.findViewById(R.id.bookedition_edittxt);
         plus_btn = (Button) v.findViewById(R.id.plus_button);
         minus_btn = (Button) v.findViewById(R.id.minus_button);
-        radio_new = (RadioButton) v.findViewById(R.id.radio_btn_old);
-        radio_old = (RadioButton) v.findViewById(R.id.radio_btn_new);
+        radio_new = (RadioButton) v.findViewById(R.id.radio_btn_new);
+        radio_old = (RadioButton) v.findViewById(R.id.radio_btn_old);
 
         if( type == 1){
             radioGroup.setVisibility(View.VISIBLE);
@@ -64,10 +66,14 @@ public class BookListAdapter {
             name.setHint("Stationary Title");
             author.setHint("Stationary Description");
             author.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+            edition.setVisibility(View.GONE);
+            isbn.setVisibility(View.GONE);
         }else if( type == 3){
             name.setHint("Description..");
             name.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
             author.setVisibility(View.GONE);
+            edition.setVisibility(View.GONE);
+            isbn.setVisibility(View.GONE);
         }
 
         v.setId(9000+book_count);
@@ -78,6 +84,8 @@ public class BookListAdapter {
         quantity.setId(4000+book_count);
         radio_new.setId(5000 + book_count);
         radio_old.setId(6000 + book_count);
+        edition.setId(7000+book_count);
+        isbn.setId(8000+book_count);
 
         name.requestFocus();
 
@@ -144,12 +152,29 @@ public class BookListAdapter {
                         EditText quantity_edit = (EditText) linearLayout.findViewById(i + 4000);
                         RadioButton new_radio = (RadioButton) linearLayout.findViewById(i+5000);
                         RadioButton old_radio = (RadioButton) linearLayout.findViewById(i+6000);
+                        EditText edition_edit = (EditText) linearLayout.findViewById(i + 7000);
+                        EditText isbn_edit = (EditText) linearLayout.findViewById(i + 8000);
 
                         String book_name = name_edit.getText().toString();
                         String book_author = author_edit.getText().toString();
+                        String book_edition = edition_edit.getText().toString();
+                        String isbn = isbn_edit.getText().toString();
                         int quantity;
                         if(quantity_edit.getText().toString().length() == 0) quantity = 1;
                         else quantity = Integer.parseInt(quantity_edit.getText().toString());
+
+                        if(book_name.equals("")){
+                            book_name = "nil";
+                        }
+                        if(book_author.equals("")){
+                            book_author = "nil";
+                        }
+                        if(book_edition.equals("")){
+                            book_edition = "nil";
+                        }
+                        if(isbn.equals("")){
+                            isbn = "nil";
+                        }
 
                         JSONObject orderJson = new JSONObject();
 
@@ -159,8 +184,11 @@ public class BookListAdapter {
                             orderJson.put("bookname", book_name);
                             orderJson.put("bookauthor", book_author);
                             orderJson.put("quantity",quantity);
-                            if( new_radio.isChecked()) orderJson.put("old_new","old");
-                            else if( old_radio.isChecked()) orderJson.put("old_new","new");
+                            orderJson.put("edition",book_edition);
+                            orderJson.put("isbn",isbn);
+                            if( new_radio.isChecked()) orderJson.put("old_new","new");
+                            else if( old_radio.isChecked()) orderJson.put("old_new","old");
+                            else orderJson.put("old_new","new (default)");
                             orderJsonArray.put(i - 1, orderJson);
                         }else if( type == 2){
                             orderJson.put("type",type);

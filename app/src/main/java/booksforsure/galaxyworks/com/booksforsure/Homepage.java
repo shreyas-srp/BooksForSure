@@ -128,7 +128,7 @@ public class Homepage extends AppCompatActivity
         }
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] data = stream.toByteArray();
         ParseFile file = new ParseFile("image.txt", data);
 
@@ -160,7 +160,7 @@ public class Homepage extends AppCompatActivity
                     list_image.setImageBitmap(null);
                     list_image.setVisibility(View.GONE);
                     icon_camera.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(),"Order Placed!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
@@ -199,7 +199,7 @@ public class Homepage extends AppCompatActivity
             return;
         }
 
-        Toast.makeText(getApplicationContext(), textOrder, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), textOrder, Toast.LENGTH_SHORT).show();
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
 
         ParseObject OrderText = new ParseObject("OrderHistory");
@@ -225,7 +225,7 @@ public class Homepage extends AppCompatActivity
                     push.setChannel("NewOrders");
                     push.setMessage("New Order !");
                     push.sendInBackground();
-                    Toast.makeText(getApplicationContext(),"Order Placed!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
                     Intent restart = new Intent(getApplicationContext(),Homepage.class);
                     startActivity(restart);
                     finish();
@@ -390,8 +390,9 @@ public class Homepage extends AppCompatActivity
         } else if (id == R.id.account) {
             Intent account = new Intent(getApplicationContext(),Account.class);
             startActivity(account);
-        } else if (id == R.id.share) {
-
+        } else if (id == R.id.contact) {
+            Intent intent = new Intent(getApplicationContext(),ContactUs.class);
+            startActivity(intent);
 
         } else if (id == R.id.logout) {
             Digits.getSessionManager().clearActiveSession();

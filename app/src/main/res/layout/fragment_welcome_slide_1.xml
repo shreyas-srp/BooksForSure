@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="booksforsure.galaxyworks.com.booksforsure.Welcome_slide_1">
+    tools:context="booksforsure.galaxyworks.com.booksforsure.Welcome_slide_1"
+    android:background="@color/tw__solid_white">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,20 +13,42 @@
         android:background="#ffffff">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/app_logo_background"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/app_logo_background"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your One Stop App To Order All Educational And Office Supplies."
+            android:textStyle="bold"
             android:textColor="#000000"
-            android:layout_alignParentBottom="true"
             android:gravity="center"
             android:textSize="20sp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_below="@+id/imageView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="44dp"
+            android:id="@+id/msg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="slide ->"
+            android:textColor="@color/textColor1"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="0dp" />
 
     </RelativeLayout>
 

@@ -45,8 +45,9 @@
                             android:id="@+id/image_list"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:visibility="gone" />
+                            android:scaleType="fitCenter"
+                            android:visibility="gone"
+                            android:adjustViewBounds="true"/>
 
                         <ImageView
                             android:id="@+id/icon_camera"
@@ -69,7 +70,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:elevation="2dp"
-                android:text="Place Order" />
+                android:text="Place Image Order" />
 
             <com.beardedhen.androidbootstrap.AwesomeTextView
                 android:layout_width="match_parent"

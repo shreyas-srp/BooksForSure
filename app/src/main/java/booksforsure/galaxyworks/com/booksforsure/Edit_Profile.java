@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.digits.sdk.android.Digits;
 import com.parse.GetCallback;
@@ -100,6 +101,7 @@ public class Edit_Profile extends AppCompatActivity {
                                 if(user_details.contains("new")) {
                                     Intent get_details = new Intent(getApplicationContext(), Homepage.class);
                                     startActivity(get_details);
+                                    Toast.makeText(getApplicationContext(),"Profile updated",Toast.LENGTH_SHORT).show();
                                     finish();
                                 }else {
                                     Intent get_details = new Intent(getApplicationContext(), Welcome.class);
