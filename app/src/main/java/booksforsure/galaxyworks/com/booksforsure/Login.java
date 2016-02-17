@@ -50,12 +50,7 @@ public class Login extends AppCompatActivity {
 
     public void login(){
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setMessage("Please Wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
 
         authCallback = new AuthCallback() {
             @Override
@@ -93,7 +88,7 @@ public class Login extends AppCompatActivity {
                             user_details.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    progressDialog.dismiss();
+
                                     if (e == null) {
 
                                         SharedPreferences user_details = getSharedPreferences("user_details_sharedpref", MODE_PRIVATE);
