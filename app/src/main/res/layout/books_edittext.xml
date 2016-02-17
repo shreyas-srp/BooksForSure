@@ -72,13 +72,23 @@
         android:id="@+id/isbn_edittxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="0dp"
         android:hint="Isbn number (optional)"
         android:textColor="#000000"
         android:textColorHint="#000000" />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:id="@+id/link_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bootstrapBrand="primary"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:bootstrapText="Click here to get isbn numbers"/>
 
     <RadioGroup
         android:id="@+id/radio_group"

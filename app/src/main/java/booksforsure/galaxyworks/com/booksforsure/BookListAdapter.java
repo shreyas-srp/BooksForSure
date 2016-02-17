@@ -1,6 +1,8 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.beardedhen.androidbootstrap.AwesomeTextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,7 +48,7 @@ public class BookListAdapter {
         RadioGroup radioGroup;
         Button plus_btn,minus_btn;
         RadioButton radio_new,radio_old;
-
+        AwesomeTextView link;
 
 
         View v = LayoutInflater.from(context).inflate(R.layout.books_edittext, linearLayout , false);
@@ -59,6 +63,18 @@ public class BookListAdapter {
         minus_btn = (Button) v.findViewById(R.id.minus_button);
         radio_new = (RadioButton) v.findViewById(R.id.radio_btn_new);
         radio_old = (RadioButton) v.findViewById(R.id.radio_btn_old);
+        link = (AwesomeTextView) v.findViewById(R.id.link_textview);
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.google.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(i);
+            }
+        });
 
         if( type == 1){
             radioGroup.setVisibility(View.VISIBLE);
