@@ -7,7 +7,7 @@ import com.parse.ParseFile;
  */
 public class History_holder {
     public int type,price;
-    public String order,time;
+    public String order,time,isbn,edition;
     public ParseFile image;
 
 }

@@ -69,7 +69,8 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                     if( type == 1){
                         String book_name = orderJson.getString("bookname");
                         String author = orderJson.getString("bookauthor");
-                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \n " + book_name + " " + author);
+                        String isbn = orderJson.getString("isbn");
+                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \n " + book_name + " " + author + "\n isbn: " + isbn );
                     }else if( type == 2){
                         String item = orderJson.getString("stationary_title");
                         String description = orderJson.getString("description");
