@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
     Button login_btn;
     CoordinatorLayout coordinatorLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,12 @@ public class Login extends AppCompatActivity {
         authCallback = new AuthCallback() {
             @Override
             public void success(DigitsSession session, final String phoneNumber) {
-
+                final ProgressDialog progressDialog = new ProgressDialog(Login.this);
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setTitle("Loading...");
+                progressDialog.setMessage("Please Wait");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 final String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("User_details");
                 String phoneNo = Digits.getSessionManager().getActiveSession().getPhoneNumber();
@@ -76,6 +82,7 @@ public class Login extends AppCompatActivity {
                             }else {
                                 home = new Intent(getApplicationContext(), Welcome.class);
                             }
+                            progressDialog.dismiss();
                             startActivity(home);
                             finish();
 
@@ -97,9 +104,11 @@ public class Login extends AppCompatActivity {
                                         user_details_editor.commit();
 
                                         Intent get_details = new Intent(getApplicationContext(), Edit_Profile.class);
+                                        progressDialog.dismiss();
                                         startActivity(get_details);
                                         finish();
                                     } else {
+                                        progressDialog.dismiss();
                                         Snackbar.make(coordinatorLayout, "Failed!", Snackbar.LENGTH_INDEFINITE).setAction("Try Again!", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
@@ -113,6 +122,7 @@ public class Login extends AppCompatActivity {
 
                         }
                         else {
+                            progressDialog.dismiss();
                             Log.d("score", "The getFirst request failed.");
                             Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
                             finish();

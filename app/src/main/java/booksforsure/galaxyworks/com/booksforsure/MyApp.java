@@ -6,6 +6,8 @@ import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.digits.sdk.android.Digits;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParseUser;
+import com.parse.PushService;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import io.fabric.sdk.android.Fabric;
@@ -28,7 +30,15 @@ public class MyApp extends Application{
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "YOLPl8WD6T36lrvNPDKVszMuwpodsYUhxXBKpmoq", "0TVywLlePatIcptbzIVtDWNj5L0tDhE7ZrbWLkjg");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        //ParseInstallation.getCurrentInstallation().saveInBackground();
+        String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put("user", phone);
+        installation.saveInBackground();
+
+
+
 
         TypefaceProvider.registerDefaultIconSets();
         //ParseInstallation pi = ParseInstallation.getCurrentInstallation();

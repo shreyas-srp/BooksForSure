@@ -41,7 +41,8 @@
         android:layout_marginTop="16dp"
         android:hint="Book Name"
         android:textColor="#000000"
-        android:textColorHint="#000000" />
+        android:textColorHint="#000000"
+        android:inputType="textCapSentences"/>
 
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
@@ -54,7 +55,8 @@
         android:layout_marginTop="8dp"
         android:hint="Book Author (optional)"
         android:textColor="#000000"
-        android:textColorHint="#000000" />
+        android:textColorHint="#000000"
+        android:inputType="textCapSentences"/>
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/bookedition_edittxt"
@@ -66,7 +68,8 @@
         android:layout_marginTop="0dp"
         android:hint="Edition (optional)"
         android:textColor="#000000"
-        android:textColorHint="#000000" />
+        android:textColorHint="#000000"
+        android:inputType="textCapSentences"/>
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/isbn_edittxt"
@@ -76,9 +79,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="0dp"
-        android:hint="Isbn number (optional)"
+        android:hint="ISBN number (optional)"
         android:textColor="#000000"
-        android:textColorHint="#000000" />
+        android:textColorHint="#000000"
+        android:inputType="textCapSentences"/>
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
         android:id="@+id/link_textview"
@@ -89,7 +93,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        app:bootstrapText="Click here to get isbn numbers"/>
+        app:bootstrapText="What's ISBN number ?"/>
 
     <RadioGroup
         android:id="@+id/radio_group"

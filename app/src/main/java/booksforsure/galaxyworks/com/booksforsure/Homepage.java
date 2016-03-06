@@ -37,6 +37,9 @@ import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -138,6 +141,7 @@ public class Homepage extends AppCompatActivity
         image_object.put("type",1);
         image_object.put("flag",1);
         image_object.put("totalAmount","0");
+        image_object.put("status",0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -151,17 +155,25 @@ public class Homepage extends AppCompatActivity
             public void done(ParseException e) {
                 progressDialog.dismiss();
                 if(e == null){
-                    ParsePush push = new ParsePush();
-                    push.setChannel("NewOrders");
-                    push.setMessage("New Order !");
-                    push.sendInBackground();
+
+                    try {
+                        ParsePush push = new ParsePush();
+                        push.setChannel("NewOrders");
+                        JSONObject data = null;
+                        data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\"}");
+                        push.setData(data);
+                        push.sendInBackground();
+                    } catch (JSONException e1) {
+                        e1.printStackTrace();
+                    }
+
                     list_image.setImageBitmap(null);
                     list_image.setVisibility(View.GONE);
                     icon_camera.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Order could'nt be placed!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -206,6 +218,7 @@ public class Homepage extends AppCompatActivity
         OrderText.put("type",2);
         OrderText.put("flag",1);
         OrderText.put("totalAmount",0+"");
+        OrderText.put("status",0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -219,11 +232,19 @@ public class Homepage extends AppCompatActivity
             public void done(ParseException e) {
                 progressDialog.dismiss();
                 if(e == null){
-                    ParsePush push = new ParsePush();
-                    push.setChannel("NewOrders");
-                    push.setMessage("New Order !");
-                    push.sendInBackground();
-                    Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+
+                    try {
+                        ParsePush push = new ParsePush();
+                        push.setChannel("NewOrders");
+                        JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\"}");
+                        push.setData(data);
+                        push.sendInBackground();
+                        Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+                    } catch (JSONException e1) {
+                        e1.printStackTrace();
+                    }
+
+
                     Intent restart = new Intent(getApplicationContext(),Homepage.class);
                     startActivity(restart);
                     finish();

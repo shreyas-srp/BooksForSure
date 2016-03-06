@@ -28,6 +28,7 @@ public class History extends AppCompatActivity {
     private History_Cards_Adapter mAdapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,7 @@ public class History extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+        query.orderByDescending("createdAt");
         query.whereEqualTo("phoneNumber", phone);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> List, ParseException e) {
@@ -68,8 +70,10 @@ public class History extends AppCompatActivity {
                         ParseObject ob = List.get(i);
                         final History_holder hist = new History_holder();
                         hist.type = ob.getInt("type");
-                        hist.price = Integer.parseInt(ob.getString("totalAmount"));
+                        hist.price = (ob.getString("totalAmount"));
                         hist.time = ob.getCreatedAt().toString();
+                        hist.orderID = ob.getObjectId();
+                        hist.status = ob.getInt("status");
 
                         if (hist.type == 1) {
                             hist.image = (ParseFile) ob.get("photoOrder");

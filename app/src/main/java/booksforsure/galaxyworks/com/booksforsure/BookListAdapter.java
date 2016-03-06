@@ -68,7 +68,7 @@ public class BookListAdapter {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://www.google.com";
+                String url = "https://www.google.co.in/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=isbn";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -82,12 +82,12 @@ public class BookListAdapter {
         }else if( type == 2){
             name.setHint("Stationary Title");
             author.setHint("Stationary Description");
-            author.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+            name.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
             edition.setVisibility(View.GONE);
             isbn.setVisibility(View.GONE);
         }else if( type == 3){
             name.setHint("Description..");
-            name.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+            name.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
             author.setVisibility(View.GONE);
             edition.setVisibility(View.GONE);
             isbn.setVisibility(View.GONE);
