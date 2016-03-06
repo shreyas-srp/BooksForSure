@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            android:text="Books For Sure"
+            android:text="Books For Sure Login"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:textSize="32sp" />
@@ -39,25 +39,17 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
-            android:layout_gravity="center_horizontal"/>
-
         <Button
             android:id="@+id/login_btn"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Use My Phone Number"
+            android:layout_height="97dp"
+            android:layout_width="343dp"
+            android:text="Use My Phone Number To Login"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary"
+            android:textSize="20dp"/>
 
     </LinearLayout>
 

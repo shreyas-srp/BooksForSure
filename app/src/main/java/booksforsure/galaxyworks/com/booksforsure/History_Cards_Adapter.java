@@ -1,12 +1,14 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -125,27 +127,45 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
         viewHolder.confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
-                    query.whereEqualTo("objectId",hist.orderID);
-                    query.getFirstInBackground(new GetCallback<ParseObject>() {
-                        @Override
-                        public void done(ParseObject object, ParseException e) {
-                            object.put("status", 1);
-                            object.saveInBackground();
-                        }
-                    });
-                            ParsePush push = new ParsePush();
-                    push.setChannel("NewOrders");
-                    JSONObject data = null;
-                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
-                    data.put("orderid",hist.orderID);
-                    data.put("time",hist.time);
-                    push.setData(data);
-                    push.sendInBackground();
-                } catch (JSONException e1) {
-                    e1.printStackTrace();
-                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+                builder.setMessage("If you confirm the price , order will be delivered").setTitle("Price Confirmation")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
+                                    query.whereEqualTo("objectId",hist.orderID);
+                                    query.getFirstInBackground(new GetCallback<ParseObject>() {
+                                        @Override
+                                        public void done(ParseObject object, ParseException e) {
+                                            object.put("status", 1);
+                                            object.saveInBackground();
+                                        }
+                                    });
+                                    ParsePush push = new ParsePush();
+                                    push.setChannel("NewOrders");
+                                    JSONObject data = null;
+                                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
+                                    data.put("orderid",hist.orderID);
+                                    data.put("time",hist.time);
+                                    push.setData(data);
+                                    push.sendInBackground();
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
+
             }
 
         });
@@ -153,33 +173,52 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
         viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
-                    query.whereEqualTo("objectId",hist.orderID);
-                    query.getFirstInBackground(new GetCallback<ParseObject>() {
-                        @Override
-                        public void done(ParseObject object, ParseException e) {
-                            object.put("status",2);
-                            object.saveInBackground();
-                        }
-                    });
-                    ParsePush push = new ParsePush();
-                    push.setChannel("NewOrders");
-                    JSONObject data = null;
-                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
-                    data.put("orderid",hist.orderID);
-                    data.put("time",hist.time);
-                    push.setData(data);
-                    push.sendInBackground();
-                } catch (JSONException e1) {
-                    e1.printStackTrace();
-                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+                builder.setMessage("You can cancel the order if you don not like the price. Feel free to call us for any doubts.").setTitle("Cancel Order")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
+                                    query.whereEqualTo("objectId",hist.orderID);
+                                    query.getFirstInBackground(new GetCallback<ParseObject>() {
+                                        @Override
+                                        public void done(ParseObject object, ParseException e) {
+                                            object.put("status",2);
+                                            object.saveInBackground();
+                                        }
+                                    });
+                                    ParsePush push = new ParsePush();
+                                    push.setChannel("NewOrders");
+                                    JSONObject data = null;
+                                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
+                                    data.put("orderid",hist.orderID);
+                                    data.put("time",hist.time);
+                                    push.setData(data);
+                                    push.sendInBackground();
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
+
             }
         });
 
 
 
     }
+
 
     @Override
     public int getItemCount() {

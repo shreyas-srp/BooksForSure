@@ -106,7 +106,33 @@ public class Homepage extends AppCompatActivity
         image_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image_order();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                builder.setMessage("Place Order ?").setTitle("Order Confirmation")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                image_order();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                                builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
+                                        .setPositiveButton("Ok",  new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id) {
+                                               // dialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
             }
         });
 
@@ -115,7 +141,34 @@ public class Homepage extends AppCompatActivity
         text_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text_order();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                builder.setMessage("Place Order ?").setTitle("Order Confirmation")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                text_order();
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                                builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //dialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
             }
         });
 
@@ -160,7 +213,7 @@ public class Homepage extends AppCompatActivity
                         ParsePush push = new ParsePush();
                         push.setChannel("NewOrders");
                         JSONObject data = null;
-                        data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\"}");
+                        data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\" ,\"intent\":\"1\"}");
                         push.setData(data);
                         push.sendInBackground();
                     } catch (JSONException e1) {
@@ -170,7 +223,9 @@ public class Homepage extends AppCompatActivity
                     list_image.setImageBitmap(null);
                     list_image.setVisibility(View.GONE);
                     icon_camera.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Order could'nt be placed!",Toast.LENGTH_SHORT).show();
@@ -236,10 +291,11 @@ public class Homepage extends AppCompatActivity
                     try {
                         ParsePush push = new ParsePush();
                         push.setChannel("NewOrders");
-                        JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\"}");
+                        JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\",\"intent\":\"1\"}");
                         push.setData(data);
                         push.sendInBackground();
-                        Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
