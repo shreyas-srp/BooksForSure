@@ -58,7 +58,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final History_holder hist = history_list.get(i);
-        viewHolder.order_price.setText("Price :     " + hist.price);
+        viewHolder.order_price.setText("Total Price :     " + hist.price);
 
         if(hist.status==1){
 
@@ -96,15 +96,18 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                         String book_name = orderJson.getString("bookname");
                         String author = orderJson.getString("bookauthor");
                         String isbn = orderJson.getString("isbn");
-                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nBook     :" + book_name + "\nAuthor     :" + author + "\nISBN:" + isbn );
+                        String price = orderJson.getString("price");
+                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nBook     :" + book_name + "\nAuthor     :" + author + "\nISBN:" + isbn + "\nPrice   :"+price+"\n");
                     }else if( type == 2){
                         String item = orderJson.getString("stationary_title");
                         String description = orderJson.getString("description");
+                        String price = orderJson.getString("price");
                         Log.e("book",item+ " " + description);
-                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nItem     :"+ item + "\nDescription     :" + description);
+                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nItem     :"+ item + "\nDescription     :" + description+ "\nPrice   :"+price+"\n");
                     }else if( type == 3 ){
                         String description = orderJson.getString("description");
-                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nDescription     :" + description);
+                        String price = orderJson.getString("price");
+                        viewHolder.order_txt.setText( viewHolder.order_txt.getText() + " \nDescription     :" + description+ "\nPrice   :"+price+"\n");
                     }
                 }
 
@@ -152,14 +155,27 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                                     data.put("time",hist.time);
                                     push.setData(data);
                                     push.sendInBackground();
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                                    builder.setMessage("Thank You").setTitle("Order Confirmed")
+                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    Intent intent = new Intent(mContext, History.class);
+                                                    mContext.startActivity(intent);
+
+                                                }
+                                            }).show();
                                 } catch (JSONException e1) {
                                     e1.printStackTrace();
                                 }
+
                             }
                         })
+
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         })
@@ -176,36 +192,53 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
-                builder.setMessage("You can cancel the order if you don not like the price. Feel free to call us for any doubts.").setTitle("Cancel Order")
-                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                builder.setMessage("You can cancel the order if you do not like the price. Feel free to call us for any doubts.").setTitle("Cancel Order")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 try {
                                     ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
-                                    query.whereEqualTo("objectId",hist.orderID);
+                                    query.whereEqualTo("objectId", hist.orderID);
                                     query.getFirstInBackground(new GetCallback<ParseObject>() {
                                         @Override
                                         public void done(ParseObject object, ParseException e) {
-                                            object.put("status",2);
+                                            object.put("status", 2);
                                             object.saveInBackground();
                                         }
                                     });
                                     ParsePush push = new ParsePush();
                                     push.setChannel("NewOrders");
                                     JSONObject data = null;
-                                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
-                                    data.put("orderid",hist.orderID);
-                                    data.put("time",hist.time);
+                                    data = new JSONObject("{\"alert\": \"User has cancelled an order !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
+                                    data.put("orderid", hist.orderID);
+                                    data.put("time", hist.time);
                                     push.setData(data);
                                     push.sendInBackground();
+
+                                    AlertDialog.Builder builder1 = new AlertDialog.Builder(mContext);
+                                    Log.d("Reached", "onClick://///////////////////////// ");
+                                    builder1.setMessage("You can reorder by confirming again").setTitle("Order Cancelled")
+                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    Log.d("Reached", "onClick://///////////////////////// ");
+                                                    Intent intent = new Intent(mContext, History.class);
+                                                    mContext.startActivity(intent);
+
+                                                }
+                                            }).show();
+
                                 } catch (JSONException e1) {
                                     e1.printStackTrace();
                                 }
+
+
+
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         })

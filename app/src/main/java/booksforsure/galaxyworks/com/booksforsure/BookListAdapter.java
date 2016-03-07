@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
 
@@ -203,20 +204,27 @@ public class BookListAdapter {
                             orderJson.put("quantity",quantity);
                             orderJson.put("edition",book_edition);
                             orderJson.put("isbn",isbn);
+                            orderJson.put("price","0");
                             if( new_radio.isChecked()) orderJson.put("old_new","new");
                             else if( old_radio.isChecked()) orderJson.put("old_new","old");
-                            else orderJson.put("old_new","new (default)");
+                           // else orderJson.put("old_new","new (default)");
+                            else {
+                                //Toast.makeText(context,"Please select New/old book",Toast.LENGTH_SHORT).show();
+                                return "missing";
+                            }
                             orderJsonArray.put(i - 1, orderJson);
                         }else if( type == 2){
                             orderJson.put("type",type);
                             orderJson.put("stationary_title", book_name);
                             orderJson.put("description", book_author);
                             orderJson.put("quantity",quantity);
+                            orderJson.put("price","0");
                             orderJsonArray.put(i - 1, orderJson);
                         }else if( type == 3){
                             orderJson.put("type",type);
                             orderJson.put("description", book_name);
                             orderJson.put("quantity",quantity);
+                            orderJson.put("price","0");
                             orderJsonArray.put(i - 1, orderJson);
                         }
 

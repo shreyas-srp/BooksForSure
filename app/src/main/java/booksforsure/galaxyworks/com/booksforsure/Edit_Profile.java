@@ -26,7 +26,7 @@ import java.util.List;
 public class Edit_Profile extends AppCompatActivity {
 
     Button save_profile_btn;
-    EditText name,address,landmark;
+    EditText name,address,landmark,flatNo,email;
     CoordinatorLayout coordinatorLayout;
 
     @Override
@@ -41,6 +41,8 @@ public class Edit_Profile extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name_edittext);
         address = (EditText) findViewById(R.id.address_edittext);
         landmark = (EditText) findViewById(R.id.landmark_edittext);
+        flatNo = (EditText) findViewById(R.id.flatNo);
+        email = (EditText) findViewById(R.id.email);
 
         save_profile_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,8 @@ public class Edit_Profile extends AppCompatActivity {
         final String userName = name.getText().toString();
         final String userAddress = address.getText().toString();
         final String userLandmark = landmark.getText().toString();
+        final String emailid = email.getText().toString();
+        final String flatNum= flatNo.getText().toString();
 
         if(userName.length() == 0) {
             name.setError("Enter Name");
@@ -77,6 +81,16 @@ public class Edit_Profile extends AppCompatActivity {
 
         if(userLandmark.length() == 0) {
             landmark.setError("Enter Landmark");
+            progressDialog.dismiss();
+            return;
+        }
+        if(flatNum.length() == 0) {
+            landmark.setError("Enter House/Flat Number");
+            progressDialog.dismiss();
+            return;
+        }
+        if(emailid.length() == 0) {
+            landmark.setError("Enter email id");
             progressDialog.dismiss();
             return;
         }
@@ -97,6 +111,8 @@ public class Edit_Profile extends AppCompatActivity {
                     user.put("user_name",userName);
                     user.put("userAddress",userAddress);
                     user.put("landmark",userLandmark);
+                    user.put("email",emailid);
+                    user.put("flatNo",flatNum);
                     user.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {

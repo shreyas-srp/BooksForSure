@@ -106,33 +106,7 @@ public class Homepage extends AppCompatActivity
         image_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
-
-                builder.setMessage("Place Order ?").setTitle("Order Confirmation")
-                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                image_order();
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
-
-                                builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
-                                        .setPositiveButton("Ok",  new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int id) {
-                                               // dialog.dismiss();
-                                            }
-                                        })
-                                        .show();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-
+                image_order();
             }
         });
 
@@ -141,34 +115,7 @@ public class Homepage extends AppCompatActivity
         text_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
-
-                builder.setMessage("Place Order ?").setTitle("Order Confirmation")
-                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                text_order();
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
-
-                                builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
-                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //dialog.dismiss();
-                                            }
-                                        })
-                                        .show();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-
+                text_order();
             }
         });
 
@@ -188,50 +135,76 @@ public class Homepage extends AppCompatActivity
 
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
 
-        ParseObject image_object = new ParseObject("OrderHistory");
+        final ParseObject image_object = new ParseObject("OrderHistory");
         image_object.put("phoneNumber",phone);
         image_object.put("photoOrder",file);
         image_object.put("type",1);
         image_object.put("flag",1);
-        image_object.put("totalAmount","0");
-        image_object.put("status",0);
+        image_object.put("totalAmount", "0");
+        image_object.put("status", 0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Please Wait");
         progressDialog.setMessage("Loading..");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
-        image_object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                progressDialog.dismiss();
-                if(e == null){
+        builder.setMessage("Place Order ?").setTitle("Order Confirmation")
+                .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        progressDialog.show();
+                        image_object.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                progressDialog.dismiss();
+                                if(e == null){
 
-                    try {
-                        ParsePush push = new ParsePush();
-                        push.setChannel("NewOrders");
-                        JSONObject data = null;
-                        data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\" ,\"intent\":\"1\"}");
-                        push.setData(data);
-                        push.sendInBackground();
-                    } catch (JSONException e1) {
-                        e1.printStackTrace();
+                                    try {
+                                        ParsePush push = new ParsePush();
+                                        push.setChannel("NewOrders");
+                                        JSONObject data = null;
+                                        data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\" ,\"intent\":\"1\"}");
+                                        push.setData(data);
+                                        push.sendInBackground();
+                                    } catch (JSONException e1) {
+                                        e1.printStackTrace();
+                                    }
+
+                                    list_image.setImageBitmap(null);
+                                    list_image.setVisibility(View.GONE);
+                                    icon_camera.setVisibility(View.VISIBLE);
+                                    //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+
+
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(),"Order could'nt be placed!",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                        builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
+                                .setPositiveButton("Ok",  new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .show();
                     }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
 
-                    list_image.setImageBitmap(null);
-                    list_image.setVisibility(View.GONE);
-                    icon_camera.setVisibility(View.VISIBLE);
-                    //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
-
-
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Order could'nt be placed!",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
     }
@@ -261,57 +234,89 @@ public class Homepage extends AppCompatActivity
         String textOrder = books_adapter.getOrder();
         if( textOrder.equals("Empty")) {
             Toast.makeText(getApplicationContext(), "Enter Details", Toast.LENGTH_SHORT).show();
-            return;
+            return ;
+        }
+        else if( textOrder.equals("missing")) {
+            Toast.makeText(getApplicationContext(), "Select New/Old book", Toast.LENGTH_SHORT).show();
+            return ;
         }
 
        // Toast.makeText(getApplicationContext(), textOrder, Toast.LENGTH_SHORT).show();
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
 
-        ParseObject OrderText = new ParseObject("OrderHistory");
+        final ParseObject OrderText = new ParseObject("OrderHistory");
         OrderText.put("textOrder",textOrder);
         OrderText.put("phoneNumber",phone);
         OrderText.put("type",2);
         OrderText.put("flag",1);
-        OrderText.put("totalAmount",0+"");
-        OrderText.put("status",0);
+        OrderText.put("totalAmount", 0 + "");
+        OrderText.put("status", 0);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Please Wait");
         progressDialog.setMessage("Loading..");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
-        OrderText.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                progressDialog.dismiss();
-                if(e == null){
+        builder.setMessage("Place Order ?").setTitle("Order Confirmation")
+                .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        progressDialog.show();
 
-                    try {
-                        ParsePush push = new ParsePush();
-                        push.setChannel("NewOrders");
-                        JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\",\"intent\":\"1\"}");
-                        push.setData(data);
-                        push.sendInBackground();
-                        //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+                        OrderText.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                progressDialog.dismiss();
+                                if(e == null){
 
-                    } catch (JSONException e1) {
-                        e1.printStackTrace();
+                                    try {
+                                        ParsePush push = new ParsePush();
+                                        push.setChannel("NewOrders");
+                                        JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\",\"intent\":\"1\"}");
+                                        push.setData(data);
+                                        push.sendInBackground();
+                                        //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
+
+                                    } catch (JSONException e1) {
+                                        e1.printStackTrace();
+                                    }
+
+
+
+                                }else {
+                                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
+                                    Log.e("order",e.toString());
+                                }
+                            }
+                        });
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+
+                        builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                        Intent restart = new Intent(getApplicationContext(),Homepage.class);
+                                        startActivity(restart);
+                                        finish();
+                                    }
+                                })
+                                .show();
                     }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
 
 
-                    Intent restart = new Intent(getApplicationContext(),Homepage.class);
-                    startActivity(restart);
-                    finish();
-                }else {
-                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
-                    Log.e("order",e.toString());
-                }
-            }
-        });
-
-        return;
+        return ;
     }
 
 
@@ -478,6 +483,10 @@ public class Homepage extends AppCompatActivity
             user_details_editor.clear();
             user_details_editor.commit();
             finish();
+        }
+        else if (id == R.id.offer){
+            Intent intent = new Intent(getApplicationContext(),Offer.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

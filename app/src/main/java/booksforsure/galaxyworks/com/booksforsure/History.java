@@ -86,7 +86,7 @@ public class History extends AppCompatActivity {
 
                     }
                     progressDialog.dismiss();
-                    mAdapter = new History_Cards_Adapter(history, getApplicationContext());
+                    mAdapter = new History_Cards_Adapter(history, History.this);
                     mRcyclerView.setAdapter(new ScaleInAnimationAdapter(mAdapter));
 
                 } else {

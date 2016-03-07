@@ -24,6 +24,16 @@
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_send"
             android:title="Logout" />
+
+        <item
+            android:id="@+id/offer"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Today's Offers" />
+
+        <item
+            android:id="@+id/discounts"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Our Discounts" />
     </group>
 
     <!--item android:title="Communicate">
