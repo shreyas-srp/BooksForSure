@@ -17,7 +17,7 @@ public class Discount extends AppCompatActivity {
         Button b = (Button) findViewById(R.id.home_btn);
         b.setVisibility(View.GONE);
 
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 }
