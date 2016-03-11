@@ -16,9 +16,7 @@ public class Discount extends AppCompatActivity {
         setContentView(R.layout.fragment_welcome_slide_5);
         Button b = (Button) findViewById(R.id.home_btn);
         b.setVisibility(View.GONE);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
     }

@@ -77,33 +77,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="Homepage" />
         </activity>
-        <activity
-            android:name=".Discount"
-            android:label="@string/title_activity_account"
-            android:parentActivityName=".Homepage"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="Homepage" />
-        </activity>
-        <activity
-            android:name=".Offer"
-            android:label="@string/title_activity_account"
-            android:parentActivityName=".Homepage"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="Homepage" />
-        </activity>
-        <activity
-            android:name=".ContactUs"
-            android:label="@string/title_activity_account"
-            android:parentActivityName=".Homepage"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="Homepage" />
-        </activity>
+
+
         <activity
             android:name=".History"
             android:label="@string/title_activity_history"
@@ -141,7 +116,9 @@
             </intent-filter>
         </receiver>
 
-
+        <activity android:name=".ContactUs" />
+        <activity android:name=".Offer" />
+        <activity android:name=".Discount" />
         <activity android:name=".OrderPlaced"></activity>
     </application>
 
