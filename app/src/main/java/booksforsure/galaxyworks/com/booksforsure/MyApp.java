@@ -30,12 +30,12 @@ public class MyApp extends Application{
         Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "YOLPl8WD6T36lrvNPDKVszMuwpodsYUhxXBKpmoq", "0TVywLlePatIcptbzIVtDWNj5L0tDhE7ZrbWLkjg");
-        //ParseInstallation.getCurrentInstallation().saveInBackground();
-        String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        //String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
 
-        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+       /* ParseInstallation installation = ParseInstallation.getCurrentInstallation();
         installation.put("user", phone);
-        installation.saveInBackground();
+        installation.saveInBackground(); */
 
 
 

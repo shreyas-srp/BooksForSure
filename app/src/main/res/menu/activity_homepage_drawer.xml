@@ -4,40 +4,40 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Home" />
+            android:icon="@drawable/order1"
+            android:title="Make Order" />
         <item
             android:id="@+id/history"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/history1"
             android:title="History" />
         <item
             android:id="@+id/account"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/account"
             android:title="Account" />
 
         <item
-            android:id="@+id/contact"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Contact Us" />
+            android:id="@+id/discounts"
+            android:icon="@drawable/discount1"
+            android:title="Our Discounts" />
 
-        <item
-            android:id="@+id/logout"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Logout" />
 
         <item
             android:id="@+id/offer"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/offers1"
             android:title="Today's Offers" />
 
-        <item
-            android:id="@+id/discounts"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Our Discounts" />
+
+
     </group>
 
-    <!--item android:title="Communicate">
+    <item android:title="Communicate">
         <menu>
+
+            <item
+                android:id="@+id/contact"
+                android:icon="@drawable/contact1"
+                android:title="Contact Us" />
+
             <item
                 android:id="@+id/share"
                 android:icon="@drawable/ic_menu_share"
@@ -46,11 +46,13 @@
                 android:id="@+id/rate"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Rate" />
+
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/logout"
                 android:title="Logout" />
+
         </menu>
-    </item-->
+    </item>
 
 </menu>

@@ -36,6 +36,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
+import com.parse.SendCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,6 +77,8 @@ public class Homepage extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.home);
+
+
 
         linear_layout_list = (LinearLayout) findViewById(R.id.order_list);
         books_adapter = new BookListAdapter();
@@ -150,7 +153,7 @@ public class Homepage extends AppCompatActivity
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
-        builder.setMessage("Place Order ?").setTitle("Order Confirmation")
+        builder.setMessage("Place order ?").setTitle("Order Confirmation")
                 .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -167,7 +170,13 @@ public class Homepage extends AppCompatActivity
                                         JSONObject data = null;
                                         data = new JSONObject("{\"alert\": \"New Image Order !\",\"title\": \"Books For Sure\" ,\"intent\":\"1\"}");
                                         push.setData(data);
-                                        push.sendInBackground();
+                                        push.sendInBackground(new SendCallback() {
+                                            @Override
+                                            public void done(ParseException e) {
+                                                Intent intent = new Intent(getApplicationContext(), OrderPlaced.class);
+                                                startActivity(intent);
+                                            }
+                                        });
                                     } catch (JSONException e1) {
                                         e1.printStackTrace();
                                     }
@@ -176,7 +185,8 @@ public class Homepage extends AppCompatActivity
                                     list_image.setVisibility(View.GONE);
                                     icon_camera.setVisibility(View.VISIBLE);
                                     //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
-
+                                    Intent intent= new Intent(getApplicationContext(),OrderPlaced.class);
+                                    startActivity(intent);
 
                                 }
                                 else {
@@ -185,7 +195,7 @@ public class Homepage extends AppCompatActivity
                             }
                         });
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+                       /* AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
                         builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
                                 .setPositiveButton("Ok",  new DialogInterface.OnClickListener() {
@@ -194,7 +204,7 @@ public class Homepage extends AppCompatActivity
                                         dialog.dismiss();
                                     }
                                 })
-                                .show();
+                                .show(); */
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -260,7 +270,7 @@ public class Homepage extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
         builder.setMessage("Place Order ?").setTitle("Order Confirmation")
-                .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         progressDialog.show();
@@ -269,14 +279,21 @@ public class Homepage extends AppCompatActivity
                             @Override
                             public void done(ParseException e) {
                                 progressDialog.dismiss();
-                                if(e == null){
+                                if (e == null) {
 
                                     try {
                                         ParsePush push = new ParsePush();
                                         push.setChannel("NewOrders");
                                         JSONObject data = new JSONObject("{\"alert\": \"New Order !\",\"title\": \"Books For Sure\",\"intent\":\"1\"}");
                                         push.setData(data);
-                                        push.sendInBackground();
+                                        push.sendInBackground(new SendCallback() {
+                                            @Override
+                                            public void done(ParseException e) {
+                                                Intent intent = new Intent(getApplicationContext(), OrderPlaced.class);
+                                                startActivity(intent);
+                                            }
+                                        });
+
                                         //Toast.makeText(getApplicationContext(),"Order Placed! We will give you a confirmation call shortly.",Toast.LENGTH_LONG).show();
 
                                     } catch (JSONException e1) {
@@ -284,15 +301,14 @@ public class Homepage extends AppCompatActivity
                                     }
 
 
-
-                                }else {
-                                    Toast.makeText(getApplicationContext(),"Order couldnt be placed!",Toast.LENGTH_SHORT).show();
-                                    Log.e("order",e.toString());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Order couldnt be placed!", Toast.LENGTH_SHORT).show();
+                                    Log.e("order", e.toString());
                                 }
                             }
                         });
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
+                       /* AlertDialog.Builder builder = new AlertDialog.Builder(Homepage.this);
 
                         builder.setMessage("Order Placed ! It will be reviewed shortly.").setTitle("Order Placed").setCancelable(false)
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -304,12 +320,12 @@ public class Homepage extends AppCompatActivity
                                         finish();
                                     }
                                 })
-                                .show();
+                                .show();*/
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog,int id) {
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 })
@@ -486,6 +502,27 @@ public class Homepage extends AppCompatActivity
         }
         else if (id == R.id.offer){
             Intent intent = new Intent(getApplicationContext(),Offer.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.share){
+            Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out Books For Sure !");
+            String shareMessage = "Hi, I have been using Books For Sure and I think you nay like it. With Books For Sure you get : All notebooks,textbooks,stationary and educational instruments. Delivered to your doorstep in just 48 hours ! No minimum order. Download app at https://play.google.com/store/apps/details?id=booksforsure.galaxyworks.com.booksforsure&hl=en SMS/Missed call : +918951881200";
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "Insert share chooser title here"));
+
+
+        }
+        else if (id == R.id.rate){
+            String url = "https://play.google.com/store/apps/details?id=booksforsure.galaxyworks.com.booksforsure&hl=en";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        }
+        else if (id == R.id.discounts){
+            Intent intent = new Intent(getApplicationContext(),Discount.class);
             startActivity(intent);
         }
 

@@ -41,8 +41,8 @@
 
         <Button
             android:id="@+id/login_btn"
-            android:layout_height="97dp"
-            android:layout_width="343dp"
+            android:layout_height="67dp"
+            android:layout_width="258dp"
             android:text="Use My Phone Number To Login"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"

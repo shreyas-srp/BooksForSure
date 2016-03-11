@@ -9,18 +9,89 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="booksforsure.galaxyworks.com.booksforsure.ContactUs">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="My Account" />
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="booksforsure1@gmail.com"
+        android:id="@+id/bfsmail"
+        android:layout_margin="8dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Office Number : 8951881200"
+        android:id="@+id/bfsno"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/bfsmail"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/address"
         android:id="@+id/address"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        android:layout_below="@+id/bfsno"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/numbers"
+        android:text="Syed Raiyan"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:id="@+id/raiyan"
         android:layout_below="@+id/address"
-        android:layout_margin="8dp"/>
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Syedraiyan01@gmail.com"
+        android:id="@+id/raiyanemail"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/raiyan"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+91 9916371851"
+        android:id="@+id/raiyanphone"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/raiyanemail"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Syed Suhaib"
+        android:textStyle="bold"
+        android:id="@+id/suhaib"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/raiyanphone"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="kline2star@gmail.com"
+        android:id="@+id/suhaibemail"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/suhaib"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+91 9740423402"
+        android:id="@+id/suhaibphone"
+        android:layout_margin="8dp"
+        android:layout_below="@id/suhaibemail"/>
 
 </RelativeLayout>

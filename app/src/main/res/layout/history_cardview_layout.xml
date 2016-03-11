@@ -109,7 +109,8 @@
             android:layout_alignLeft="@+id/linearLayout2"
             android:layout_alignStart="@+id/linearLayout2"
             android:layout_below="@+id/linearLayout2"
-            android:layout_marginRight="0dp" />
+            android:layout_marginRight="0dp"
+            android:background="@color/bootstrap_brand_success"/>
 
         <Button
             android:layout_width="100dp"
@@ -118,18 +119,19 @@
             android:id="@+id/cancel"
             android:layout_below="@+id/linearLayout2"
             android:layout_centerHorizontal="true"
-            android:layout_marginRight="0dp"/>
+            android:layout_marginRight="0dp"
+            android:background="@color/bootstrap_brand_danger" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Call Publisher"
+            android:text="Call Us"
             android:id="@+id/call"
             android:layout_below="@+id/linearLayout2"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp" />
 
 
     </RelativeLayout>

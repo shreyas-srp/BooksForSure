@@ -31,6 +31,8 @@ public class Welcome extends AppCompatActivity {
         adapter.addFragment(new Welcome_slide_1(), "1");
         adapter.addFragment(new Welcome_slide_2(), "2");
         adapter.addFragment(new Welcome_slide_3(), "3");
+        adapter.addFragment(new Welcome_slide_4(), "4");
+        adapter.addFragment(new Welcome_slide_5(), "5");
         viewPager.setAdapter(adapter);
     }
 

@@ -1,6 +1,7 @@
 package booksforsure.galaxyworks.com.booksforsure;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -57,7 +58,7 @@ public class History extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("OrderHistory");
         String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
-        query.orderByDescending("createdAt");
+        query.orderByDescending("updatedAt");
         query.whereEqualTo("phoneNumber", phone);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> List, ParseException e) {
@@ -98,4 +99,11 @@ public class History extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), Homepage.class);
+        startActivity(intent);
+        finish();
+    }
 }

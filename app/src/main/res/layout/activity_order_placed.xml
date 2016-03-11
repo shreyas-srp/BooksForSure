@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="booksforsure.galaxyworks.com.booksforsure.OrderPlaced">
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="OK"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ORDER PLACED"
+        android:id="@+id/view"
+        android:textColor="@color/bootstrap_brand_success"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        />
+
+
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CONGRATULATIONS !"
+        android:textColor="@color/bootstrap_brand_success"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Order Has Been Placed. You’ll Get A Quick Price Confirmation Notification And Then You Can Either Confirm Or Cancel Your Order. Your Order Will Be Delivered Within 48 Hours After Confirmation."
+        android:id="@+id/textView6"
+        android:textColor="@color/bootstrap_brand_success"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="THANK YOU FOR USING BOOKS FOR SURE."
+        android:id="@+id/view2"
+        android:textColor="@color/bootstrap_brand_success"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="52dp" />
+
+</RelativeLayout>

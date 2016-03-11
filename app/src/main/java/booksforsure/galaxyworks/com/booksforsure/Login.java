@@ -19,6 +19,7 @@ import com.digits.sdk.android.DigitsException;
 import com.digits.sdk.android.DigitsSession;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
@@ -63,6 +64,10 @@ public class Login extends AppCompatActivity {
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 final String phone = Digits.getSessionManager().getActiveSession().getPhoneNumber();
+                ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                installation.put("user", phone);
+                installation.saveInBackground();
+
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("User_details");
                 String phoneNo = Digits.getSessionManager().getActiveSession().getPhoneNumber();
                 query.whereEqualTo("phoneNumber", phoneNo);
@@ -88,6 +93,9 @@ public class Login extends AppCompatActivity {
 
 
                         } else if(e.getCode()==101){
+                            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                            installation.put("user", phone);
+                            installation.saveInBackground();
 
                             ParseObject user_details = new ParseObject("User_details");
                             user_details.put("phoneNumber", phone);

@@ -53,7 +53,7 @@
                             android:id="@+id/icon_camera"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@android:drawable/ic_menu_camera" />
+                            android:src="@drawable/camera2" />
 
                     </RelativeLayout>
 
@@ -72,12 +72,11 @@
                 android:elevation="2dp"
                 android:text="Place Image Order" />
 
-            <com.beardedhen.androidbootstrap.AwesomeTextView
+            <ImageView
+                android:id="@+id/or"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="40sp"
-                app:bootstrapBrand="primary"
-                app:bootstrapText="Or" />
+                android:layout_height="match_parent"
+                android:src="@drawable/or2" />
 
 
             <LinearLayout

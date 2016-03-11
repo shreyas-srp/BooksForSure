@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -61,17 +62,31 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
         viewHolder.order_price.setText("Total Price :     " + hist.price);
 
         if(hist.status==1){
-
+        //confirmed
            // viewHolder.confirm.setVisibility(View.GONE);
             viewHolder.confirm.setEnabled(false);
+            viewHolder.confirm.setText("Order Confirmed");
+            viewHolder.confirm.setBackgroundResource(android.R.drawable.btn_default);
 
         }
         else if(hist.status==2){
-            //viewHolder.cancel.setVisibility(View.GONE);
+            // order cancelled
+            viewHolder.confirm.setEnabled(false);
             viewHolder.cancel.setEnabled(false);
+            viewHolder.cancel.setText("Order Cancelled");
+            viewHolder.cancel.setBackgroundResource(android.R.drawable.btn_default);
         }
 
-        if(hist.type == 1){
+        else if(hist.status==3){
+            // order cancelled
+            viewHolder.confirm.setEnabled(false);
+            viewHolder.cancel.setVisibility(View.GONE);
+            viewHolder.confirm.setText("Order Delivered");
+           // viewHolder.cancel.setBackgroundResource(android.R.drawable.btn_default);
+        }
+
+
+        if (hist.type == 1) {
             viewHolder.order_image.setVisibility(View.VISIBLE);
             viewHolder.order_txt.setVisibility(View.GONE);
             hist.image.getDataInBackground(new GetDataCallback() {
@@ -133,7 +148,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
-                builder.setMessage("If you confirm the price , order will be delivered").setTitle("Price Confirmation")
+                builder.setMessage("Are you sure you want to confirm ?").setTitle("Price Confirmation")
                         .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -150,14 +165,15 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                                     ParsePush push = new ParsePush();
                                     push.setChannel("NewOrders");
                                     JSONObject data = null;
-                                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
+                                    data = new JSONObject("{\"alert\": \"Order Confirmation Recieved !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\",\"intent\":\"0\"}");
                                     data.put("orderid",hist.orderID);
                                     data.put("time",hist.time);
                                     push.setData(data);
                                     push.sendInBackground();
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                                    builder.setMessage("Thank You").setTitle("Order Confirmed")
+                                    builder.setMessage("Thank You").setTitle("Your Order Has been Confirmed it will be Delivered Within 48 hours\n" +
+                                            "THANK YOU FOR USING BOOKS FOR SURE")
                                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int id) {
@@ -192,7 +208,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
-                builder.setMessage("You can cancel the order if you do not like the price. Feel free to call us for any doubts.").setTitle("Cancel Order")
+                builder.setMessage("Are You Sure You Want To Cancel?.").setTitle("Order Cancellation")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -209,7 +225,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
                                     ParsePush push = new ParsePush();
                                     push.setChannel("NewOrders");
                                     JSONObject data = null;
-                                    data = new JSONObject("{\"alert\": \"User has cancelled an order !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\"}");
+                                    data = new JSONObject("{\"alert\": \"User has cancelled an order !\",\"title\": \"Books For Sure Admin\",\"orderid\":\"...\",\"time\":\"...\",\"intent\":\"0\"}");
                                     data.put("orderid", hist.orderID);
                                     data.put("time", hist.time);
                                     push.setData(data);
@@ -217,7 +233,7 @@ public class History_Cards_Adapter extends RecyclerView.Adapter<History_Cards_Ad
 
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(mContext);
                                     Log.d("Reached", "onClick://///////////////////////// ");
-                                    builder1.setMessage("You can reorder by confirming again").setTitle("Order Cancelled")
+                                    builder1.setMessage("Your order has been cancelled").setTitle("Order Cancelled")
                                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int id) {

@@ -30,32 +30,33 @@ public class Splash extends AppCompatActivity {
                 /* Create an Intent that will start the Menu-Activity. */
                 SharedPreferences user_details = getSharedPreferences("user_details_sharedpref",MODE_PRIVATE);
                 Intent mainIntent;
-                String phone=user_details.getString("userPhoneNumber","0");
 
-                ParseQuery<ParseObject> query=ParseQuery.getQuery("OrderHistory");
-                query.whereEqualTo("phoneNumber", phone);
-                query.orderByDescending("createdAt");
-                query.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> objects, ParseException e) {
-                        if(e==null){
-                            int i=0;
-                            for (ParseObject order : objects) {
-                                int status = order.getInt("status");
-                                if (status == 0) {
-                                    Intent intent = new Intent(getApplicationContext(),History.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-
-                        }
-
-                    }
-                });
 
                 if(user_details.contains("userPhoneNumber")) {
                     if(user_details.contains("new")) {
+                        String phone=user_details.getString("userPhoneNumber","0");
+
+                        ParseQuery<ParseObject> query=ParseQuery.getQuery("OrderHistory");
+                        query.whereEqualTo("phoneNumber", phone);
+                        query.orderByDescending("createdAt");
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> objects, ParseException e) {
+                                if(e==null){
+                                    int i=0;
+                                    for (ParseObject order : objects) {
+                                        int status = order.getInt("status");
+                                        if (status == 0) {
+                                            Intent intent = new Intent(getApplicationContext(),History.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+
+                                }
+
+                            }
+                        });
                         mainIntent = new Intent(getApplicationContext(), Homepage.class);
                     }else{
                         mainIntent = new Intent(getApplicationContext(), Welcome.class);
