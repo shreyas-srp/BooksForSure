@@ -40,5 +40,8 @@ public class Offer extends AppCompatActivity {
               //  Toast.makeText(getApplicationContext(), offer, Toast.LENGTH_SHORT).show();
             }
         });
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
     }
 }
