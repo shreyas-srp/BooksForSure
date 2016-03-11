@@ -116,9 +116,12 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ContactUs" />
-        <activity android:name=".Offer" />
-        <activity android:name=".Discount" />
+        <activity android:name=".ContactUs"
+        android:parentActivityName=".Homepage"/>
+        <activity android:name=".Offer" 
+        android:parentActivityName=".Homepage"/>
+        <activity android:name=".Discount" 
+        android:parentActivityName=".Homepage"/>
         <activity android:name=".OrderPlaced"></activity>
     </application>
 
