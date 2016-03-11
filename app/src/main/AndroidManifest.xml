@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="booksforsure.galaxyworks.com.booksforsure">
+    package="booksforsure.galaxyworks.com.galaxyworks">
 
     <uses-sdk tools:overrideLibrary="com.beardedhen.androidbootstrap" />
 
@@ -31,19 +31,19 @@
       to match your app's package name + ".permission.C2D_MESSAGE".
     -->
     <permission
-        android:name="booksforsure.galaxyworks.com.booksforsure.permission.C2D_MESSAGE"
+        android:name="booksforsure.galaxyworks.com.galaxyworks.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="booksforsure.galaxyworks.com.booksforsure.permission.C2D_MESSAGE" />
 
     <application
-        android:name=".MyApp"
+        android:name="booksforsure.galaxyworks.com.galaxyworks.MyApp"
         android:allowBackup="true"
         android:icon="@drawable/bfs5"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash">
+        <activity android:name="booksforsure.galaxyworks.com.galaxyworks.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,15 +51,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.Login"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Edit_Profile"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.Edit_Profile"
             android:label="@string/title_activity_edit__profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Homepage"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.Homepage"
             android:label="@string/title_activity_homepage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -69,34 +69,34 @@
             android:value="6c8eaea736b29cbca442b89c0ca892e52a111291" />
 
         <activity
-            android:name=".Account"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.Account"
             android:label="@string/title_activity_account"
-            android:parentActivityName=".Homepage"
+            android:parentActivityName="booksforsure.galaxyworks.com.galaxyworks.Homepage"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="Homepage" />
+                android:value="booksforsure.galaxyworks.com.galaxyworks.Homepage" />
         </activity>
 
 
         <activity
-            android:name=".History"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.History"
             android:label="@string/title_activity_history"
-            android:parentActivityName=".Homepage"
+            android:parentActivityName="booksforsure.galaxyworks.com.galaxyworks.Homepage"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="Homepage" />
+                android:value="booksforsure.galaxyworks.com.galaxyworks.Homepage" />
         </activity>
         <activity
-            android:name=".Welcome"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.Welcome"
             android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name="com.parse.PushService" />
 
         <receiver
-            android:name=".PushMessageBroadcast"
+            android:name="booksforsure.galaxyworks.com.galaxyworks.PushMessageBroadcast"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -116,13 +116,13 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ContactUs"
-        android:parentActivityName=".Homepage"/>
-        <activity android:name=".Offer" 
-        android:parentActivityName=".Homepage"/>
-        <activity android:name=".Discount" 
-        android:parentActivityName=".Homepage"/>
-        <activity android:name=".OrderPlaced"></activity>
+        <activity android:name="booksforsure.galaxyworks.com.galaxyworks.ContactUs"
+        android:parentActivityName="booksforsure.galaxyworks.com.galaxyworks.Homepage"/>
+        <activity android:name="booksforsure.galaxyworks.com.galaxyworks.Offer"
+        android:parentActivityName="booksforsure.galaxyworks.com.galaxyworks.Homepage"/>
+        <activity android:name="booksforsure.galaxyworks.com.galaxyworks.Discount"
+        android:parentActivityName="booksforsure.galaxyworks.com.galaxyworks.Homepage"/>
+        <activity android:name="booksforsure.galaxyworks.com.galaxyworks.OrderPlaced"></activity>
     </application>
 
 </manifest>

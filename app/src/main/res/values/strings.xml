@@ -3,6 +3,15 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_edit__profile">Books for Sure</string>
     <string name="title_activity_homepage">Homepage</string>
+    <string name="a"><u>Discounts For SSLC</u></string>
+    <string name="b"><u>For PUC</u></string>
+    <string name="c"><u>For Engineering</u></string>
+    <string name="d"><u>For Health Science</u></string>
+    <string name="e"><u>For Stationary</u></string>
+    <string name="f"><u>For Dental Equipement</u></string>
+    <string name="g"><u>For Second Hand Text Book</u></string>
+    <string name="degree"><u>For Degree</u></string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

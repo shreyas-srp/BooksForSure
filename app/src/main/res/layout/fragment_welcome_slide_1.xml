@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="booksforsure.galaxyworks.com.booksforsure.Welcome_slide_1"
+    tools:context="booksforsure.galaxyworks.com.galaxyworks.Welcome_slide_1"
     android:background="@color/tw__solid_white">
 
     <!-- TODO: Update blank fragment layout -->

@@ -1,19 +1,14 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import java.util.List;
 
 public class Offer extends AppCompatActivity {
 

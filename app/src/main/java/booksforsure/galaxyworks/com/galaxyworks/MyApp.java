@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.app.Application;
 
@@ -6,8 +6,6 @@ import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.digits.sdk.android.Digits;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.parse.ParseUser;
-import com.parse.PushService;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import io.fabric.sdk.android.Fabric;

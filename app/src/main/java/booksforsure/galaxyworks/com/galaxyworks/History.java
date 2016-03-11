@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,8 +20,8 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import booksforsure.galaxyworks.com.booksforsure.AnimationAdapters.ScaleInAnimationAdapter;
-import booksforsure.galaxyworks.com.booksforsure.Holders.History_holder;
+import booksforsure.galaxyworks.com.galaxyworks.AnimationAdapters.ScaleInAnimationAdapter;
+import booksforsure.galaxyworks.com.galaxyworks.Holders.History_holder;
 
 public class History extends AppCompatActivity {
 

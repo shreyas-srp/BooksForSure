@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure.AnimationAdapters;
+package booksforsure.galaxyworks.com.galaxyworks.AnimationAdapters;
 
 import android.animation.Animator;
 import android.support.v7.widget.RecyclerView;

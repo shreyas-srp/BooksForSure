@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

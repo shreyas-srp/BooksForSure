@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 /**
  * Created by shrey on 27-01-2016.

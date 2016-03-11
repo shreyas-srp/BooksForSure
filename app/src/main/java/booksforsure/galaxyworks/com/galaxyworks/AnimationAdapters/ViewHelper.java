@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure.AnimationAdapters;
+package booksforsure.galaxyworks.com.galaxyworks.AnimationAdapters;
 
 import android.support.v4.view.ViewCompat;
 import android.view.View;

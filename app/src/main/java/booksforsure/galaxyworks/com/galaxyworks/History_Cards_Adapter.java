@@ -1,13 +1,10 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -33,9 +30,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import booksforsure.galaxyworks.com.booksforsure.Holders.History_holder;
-
-import static android.graphics.Color.GREEN;
+import booksforsure.galaxyworks.com.galaxyworks.Holders.History_holder;
 
 /**
  * Created by shrey on 22-10-2015.

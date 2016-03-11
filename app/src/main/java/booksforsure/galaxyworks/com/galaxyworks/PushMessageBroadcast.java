@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure;
+package booksforsure.galaxyworks.com.galaxyworks;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,9 +14,6 @@ import com.parse.ParsePushBroadcastReceiver;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import booksforsure.galaxyworks.com.booksforsure.History;
-import booksforsure.galaxyworks.com.booksforsure.R;
 
 /**
  * Created by Aqeel on 15-02-2016.

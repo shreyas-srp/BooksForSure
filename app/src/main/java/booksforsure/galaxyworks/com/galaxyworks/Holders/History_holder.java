@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.booksforsure.Holders;
+package booksforsure.galaxyworks.com.galaxyworks.Holders;
 
 import com.parse.ParseFile;
 
