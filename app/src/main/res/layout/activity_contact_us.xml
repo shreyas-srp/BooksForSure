@@ -71,7 +71,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="kline2star@gmail.com"
+        android:text="Cline2star@gmail.com"
         android:id="@+id/suhaibemail"
         android:layout_margin="8dp"
         android:layout_below="@+id/suhaib"/>
