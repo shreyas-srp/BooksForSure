@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Books for sure</string>
+    <string name="app_name">BooksForSure</string>
     <string name="title_activity_login">Login</string>
-    <string name="title_activity_edit__profile">Books for Sure</string>
+    <string name="title_activity_edit__profile">BooksForSure</string>
     <string name="title_activity_homepage">Homepage</string>
     <string name="a"><u>Discounts For SSLC</u></string>
     <string name="b"><u>For PUC</u></string>

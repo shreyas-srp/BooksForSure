@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="booksforsure.galaxyworks.com.galaxyworks.Welcome_slide_3">
+    tools:context="booksforsure1.galaxyworks.com.galaxyworks.Welcome_slide_3">
 
     <RelativeLayout
         android:layout_width="match_parent"

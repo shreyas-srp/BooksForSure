@@ -1,4 +1,4 @@
-package booksforsure.galaxyworks.com.galaxyworks;
+package booksforsure1.galaxyworks.com.galaxyworks;
 
 import org.junit.Test;
 
